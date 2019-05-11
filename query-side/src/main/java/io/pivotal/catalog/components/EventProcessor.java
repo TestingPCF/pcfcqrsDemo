@@ -20,12 +20,12 @@ import org.springframework.stereotype.Component;
 * We have to organise the event handler into a Processor group as by default, processors read from the EventBus not AMQP,
 * so we need to reconfigure things a bit - we need to add our event handler to a processor that reads from a Rabbit queue.
 *
-* So we annotate the class with @ProcessorGroup(“amqpEvents”) to configure the event processor (note default processor
+* So we annotate the class with @ProcessorGroup(â€œamqpEventsâ€�) to configure the event processor (note default processor
 * would use the package-name). We also need to add to the application.properties the following setting
-* “axon.eventhandling.processors.amqpEvents.source=complaintEventsMethod”. You'll see this property in GitHub as that's
+* â€œaxon.eventhandling.processors.amqpEvents.source=complaintEventsMethodâ€�. You'll see this property in GitHub as that's
 * where our configuration comes from for this app as it's been externalised by Spring Cloud Config.
 *
-* Note that the “complaintEventsMethod” keyword in the properties comes from (and must match) the @Bean name of the
+* Note that the â€œcomplaintEventsMethodâ€� keyword in the properties comes from (and must match) the @Bean name of the
 * complaintEventsMethod(Serializer serializer) method in the AxonConfiguration class!
 */
 
@@ -38,11 +38,14 @@ public class EventProcessor {
     private final ProductRepository repo;
 
     public EventProcessor(ProductRepository repository) {
+    	LOG.info("Inside EventProcessor...");
         this.repo = repository;
     }
-
+    
+    
     @EventHandler // Mark this method as an Axon Event Handler
     public void on(ProductAddedEvent productAddedEvent) {
+    	LOG.info("before saver");
         repo.save(new Product(productAddedEvent.getId(), productAddedEvent.getName()));
         LOG.info("A product was added! Id={} Name={}", productAddedEvent.getId(), productAddedEvent.getName());
     }

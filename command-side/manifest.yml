@@ -1,12 +1,14 @@
 applications:
-- name: pcf-axon-cqrs-demo-command-side
+- name: cqrs-command-side
   path: build/libs/pcf-axon-cqrs-demo-command-side.jar
   memory: 1G
   timeout: 120
   services:
-    - mysql
-    - rabbit
-    - config
-    - registry
+    - dbService
+    - rabbitmq-service
+    - cloud-config-server
+    - cloud-service-registry
+  routes:
+  - route: cqrs-command-side.apps.sandbox.cflab01.in.hclcnlabs.com
   env:
      JBP_CONFIG_DEBUG: '{enabled: true}'

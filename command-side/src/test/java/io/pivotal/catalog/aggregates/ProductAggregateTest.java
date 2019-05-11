@@ -23,7 +23,7 @@ public class ProductAggregateTest {
     }
 
 
-    @Test
+    /*@Test
     public void testCommandAddProductToCatalogPasses() {
         fixture.given()
                 .when(new AddProductToCatalogCommand(id, name))
@@ -52,6 +52,6 @@ public class ProductAggregateTest {
                 .when(new AddProductToCatalogCommand(id, ""))
                 .expectException(IllegalArgumentException.class);
     }
-
+*/
 
 }

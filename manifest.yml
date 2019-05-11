@@ -6,10 +6,10 @@ applications:
   instances: 1
   random-route: true
   services:
-    - mysql
-    - rabbit
-    - config
-    - registry
+    - dbService
+    - rabbitmq-service
+    - cloud-config-server
+    - cloud-service-registry
 #  env:
 #     JBP_CONFIG_DEBUG: '{enabled: true}'
 #     JAVA_OPTS: -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=178.62.37.59:13456
@@ -19,10 +19,10 @@ applications:
   instances: 1
   random-route: true
   services:
-    - mysql
-    - rabbit
-    - config
-    - registry
+    - dbService
+    - rabbitmq-service
+    - cloud-config-server
+    - cloud-service-registry
 #  env:
 #     JBP_CONFIG_DEBUG: '{enabled: true}'
 #     JAVA_OPTS: -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=178.62.37.59:8000
